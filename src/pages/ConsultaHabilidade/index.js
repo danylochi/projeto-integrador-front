@@ -4,10 +4,11 @@ import './style.css';
 
 import api from '../../services/api';
 import { Form, Row, Col, Button, Card, Table } from 'react-bootstrap';
+import { toast } from 'react-toastify';
 
 function ConsultaHabilidade() {
   const [dataCaed, setDataCaed] = useState([]);
-  const [ano, setAno] = useState(0);
+  const [ano, setAno] = useState("");
   const [materia, setMateria] = useState("");
   const [turma, setTurma] = useState("");
   const [serie, setSerie] = useState(0);
@@ -35,7 +36,34 @@ function ConsultaHabilidade() {
       if (f.id === id) return f;
     });
 
-    await api.put(`habilidadecaed/${id}/?cod_da_habilidade=${habilidade.cod_da_habilidade}`);
+    await api.put(`habilidadecaed/${id}/?cod_da_habilidade=${habilidade.cod_da_habilidade}`).then(function (response) {
+      console.log(response);
+
+      toast(`Habilidade salva com sucesso: ${habilidade.cod_da_habilidade}.`, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        type: 'success'
+        });
+    })
+    .catch(function (error) {
+      console.log(error);
+
+      toast(`Erro ao salvar a habilidade: ${habilidade.cod_da_habilidade}.`, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        type: 'error'
+        });
+    });
   }   
     return (
       <div style={{margin: '30px'  }}>
@@ -127,7 +155,11 @@ function ConsultaHabilidade() {
                     onChange={(e) => handleChangeInput(d.id, e.target.value)}  
                   />
                 </td>
-                <td><button onClick={() => saveHabilidadeCaed(d.id)}>Salvar</button></td>              
+                <td>
+                  <Button variant="primary"
+                    onClick={() => saveHabilidadeCaed(d.id)}>
+                    Salvar
+                  </Button></td>              
               </tr>
             ))}
           </tbody>

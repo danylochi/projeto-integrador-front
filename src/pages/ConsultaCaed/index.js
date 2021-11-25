@@ -6,7 +6,7 @@ import api from '../../services/api';
 function ConsultaCaed() {
   const [dataCaed, setDataCaed] = useState([]);
   const [tableHeader, setTableHeader] = useState([]);  
-  const [ano, setAno] = useState(0);
+  const [ano, setAno] = useState("");
   const [materia, setMateria] = useState("");
   const [turma, setTurma] = useState("");
   const [serie, setSerie] = useState(0);
@@ -19,12 +19,14 @@ function ConsultaCaed() {
     setTableHeader(response.data.table_header);
   }
 
-  function downloadDataCaed() {
-    api.post(`downloadfile/?ano=${ano}&materia=${materia}&turma=${turma}&serie=${serie}&bimestre=${bimestre}&recuperacao=${recuperacao ? 'SIM' : 'NÃO'}`, null,
+  function downloadDataCaed(vazia = false) {
+    api.post(
+      `downloadfile/?ano=${vazia ? "0": ano}&materia=${vazia ? "": materia}&turma=${vazia ? "": turma}&serie=${vazia ? "0": serie}&bimestre=${vazia ? "0": bimestre}&recuperacao=${recuperacao ? 'SIM' : 'NÃO'}&vazia=${vazia ? '1' : '0'}`, 
+      null,
       {
           headers:
           {
-              'Content-Disposition': "attachment; filename=file.xlsx",
+              'Content-Disposition': `attachment; filename=${vazia ? "leiaute_caed" : `planilha_caed_${ano}_${serie}${turma}_${bimestre}_${recuperacao ? 'SIM' : 'NÃO'}`}.xlsx`,
               'Content-Type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
           },
           responseType: 'arraybuffer',
@@ -33,7 +35,7 @@ function ConsultaCaed() {
       const url = window.URL.createObjectURL(new Blob([response.data]));
       const link = document.createElement('a');
       link.href = url;
-      link.setAttribute('download', 'file.xlsx');
+      link.setAttribute('download', `${vazia ? "leiaute_caed" : `planilha_caed_${ano}_${serie}${turma}_${bimestre}_${recuperacao ? 'SIM' : 'NÃO'}`}.xlsx`);
       document.body.appendChild(link);
       link.click();
   })
@@ -112,7 +114,8 @@ function ConsultaCaed() {
             </Form.Group>        
             <div>
               <Button onClick={() => loadDataCaed()} style={{marginRight: '30px'}}>BUSCAR</Button>
-              <Button onClick={()=> downloadDataCaed()}>DOWNLOAD</Button>
+              <Button onClick={()=> downloadDataCaed()}style={{marginRight: '30px'}}>DOWNLOAD</Button>
+              <Button onClick={()=> downloadDataCaed(true)}>LEIAUTE</Button>
             </div>
           </Form>
         </Card.Body>  

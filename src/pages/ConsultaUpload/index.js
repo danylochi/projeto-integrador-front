@@ -2,6 +2,7 @@ import { useState } from 'react';
 import './style.css';
 import api from '../../services/api';
 import { Form, Row, Col, Card, Button } from 'react-bootstrap';
+import { toast } from 'react-toastify';
 
 
 
@@ -23,10 +24,34 @@ function ConsultaUpload() {
     }
     var response = await api.post('uploadfile/', formData,config).then(function (response) {
         console.log(response);
+
+        toast(`Planilha importada com sucesso.`, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          type: 'success'
+          });
+
         setLoading(false);
       })
       .catch(function (error) {
         console.log(error);
+
+        toast(`Erro ao importar a planilha.`, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          type: 'error'
+          });
+
         setLoading(false);
       });
 

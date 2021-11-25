@@ -7,6 +7,9 @@ import ConsultaUpload from './pages/ConsultaUpload';
 import Home from './pages/Home';
 import { Container } from "react-bootstrap";
 import ResultadoCaed from "./pages/ResultadoCaed";
+import { ToastContainer, toast } from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
@@ -22,6 +25,7 @@ function App() {
           <Route path="/" exact component={Home} />
         </Container>
       </Router >    
+      <ToastContainer />
     </div>
   );
 }

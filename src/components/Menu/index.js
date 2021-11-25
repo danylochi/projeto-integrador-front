@@ -10,7 +10,7 @@ function Menu() {
         <Container>
           <LinkContainer to="/">
             <Navbar.Brand>
-              <h2>HOME</h2>
+              <h4>HOME</h4>
             </Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />

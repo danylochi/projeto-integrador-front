@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Form, Row, Col, Card, Button, Table } from 'react-bootstrap';
 import './style.css';
 import api from '../../services/api';
+import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 
 function ResultadoCaed() {
   const [resultadoCaed, setResultadoCaed] = useState([]);
+  const [resultadoChart, setResultadoChart] = useState([]);
   const [tableHeader, setTableHeader] = useState([]);  
-  const [ano, setAno] = useState(0);
+  const [ano, setAno] = useState("");
   const [materia, setMateria] = useState("");
   const [turma, setTurma] = useState("");
   const [serie, setSerie] = useState(0);
@@ -18,6 +20,30 @@ function ResultadoCaed() {
     setResultadoCaed(response.data.resultadoCaed);
     setTableHeader(response.data.table_header);
   }
+
+  useEffect(() => {
+    const rcn = resultadoCaed[0];
+    const rcs = resultadoCaed[1];
+    var arry = [];
+    
+    if (rcn != undefined)
+    {
+      for (var i = 1; i <= 30; i++) { 
+        if (rcn[`H_${i.toString().padStart(2, '0')}`] != "0" && rcs[`H_${i.toString().padStart(2, '0')}`] != "0")
+        {
+          arry.push(
+            {
+              habilidade: `H ${i}`,
+              rcn: rcn[`H_${i.toString().padStart(2, '0')}`],
+              rcs: rcs[`H_${i.toString().padStart(2, '0')}`]
+            }
+          );
+        }
+      }
+    }
+    setResultadoChart(arry);
+
+  }, [resultadoCaed])
 
   
 
@@ -138,6 +164,20 @@ function ResultadoCaed() {
           ))}
         </tbody>
       </Table>
+
+      <div style={{margin: '30px'  }}>
+        <ResponsiveContainer width="100%" height={300}>
+          <BarChart data={resultadoChart}>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="habilidade" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <Bar dataKey="rcn" fill="#8884d8" name="PROVA CAED"/>
+            <Bar dataKey="rcs" fill="#82ca9d" name="RECUPERAÇÃO CONTINUADA"/>
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
     </div>
   );
 }
