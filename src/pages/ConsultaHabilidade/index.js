@@ -108,10 +108,10 @@ function ConsultaHabilidade() {
                     <option value="0" disabled>
                       Escolha um bimestre ...
                     </option>
-                    <option value="1">AAP 1º BIMESTRE 2021</option>
-                    <option value="2">AAP 2º BIMESTRE 2021</option>
-                    <option value="3">AAP 3º BIMESTRE 2021</option>
-                    <option value="4">AAP 4º BIMESTRE 2021</option>
+                    <option value="1">AAP 1º BIMESTRE</option>
+                    <option value="2">AAP 2º BIMESTRE</option>
+                    <option value="3">AAP 3º BIMESTRE</option>
+                    <option value="4">AAP 4º BIMESTRE</option>
                   </Form.Select>
                 </Col>            
               </Form.Group>
