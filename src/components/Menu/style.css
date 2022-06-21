@@ -1,7 +1,12 @@
-strong{
+h4 {
     color: #ffffff;
 }
 
-h4 {
-    color: #ffffff;
+.navbar-light .navbar-nav .nav-link {
+    color: #ffffff !important;
+}
+
+.navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .show>.nav-link {
+    color: rgb(3, 3, 102) !important;
+    
 }

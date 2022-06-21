@@ -19,14 +19,14 @@ function ConsultaCaed() {
     setTableHeader(response.data.table_header);
   }
 
-  function downloadDataCaed(vazia = false) {
+  function downloadDataCaed() {
     api.post(
-      `downloadfile/?ano=${vazia ? "0": ano}&materia=${vazia ? "": materia}&turma=${vazia ? "": turma}&serie=${vazia ? "0": serie}&bimestre=${vazia ? "0": bimestre}&recuperacao=${recuperacao ? 'SIM' : 'NÃO'}&vazia=${vazia ? '1' : '0'}`, 
+      `downloadfile/?ano=${ano}&materia=${materia}&turma=${turma}&serie=${serie}&bimestre=${bimestre}&recuperacao=${recuperacao ? 'SIM' : 'NÃO'}&vazia=0`, 
       null,
       {
           headers:
           {
-              'Content-Disposition': `attachment; filename=${vazia ? "leiaute_caed" : `planilha_caed_${ano}_${serie}${turma}_${bimestre}_${recuperacao ? 'SIM' : 'NÃO'}`}.xlsx`,
+              'Content-Disposition': `attachment; filename=planilha_caed_${ano}_${serie}${turma}_${bimestre}_${recuperacao ? 'SIM' : 'NÃO'}.xlsx`,
               'Content-Type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
           },
           responseType: 'arraybuffer',
@@ -35,7 +35,7 @@ function ConsultaCaed() {
       const url = window.URL.createObjectURL(new Blob([response.data]));
       const link = document.createElement('a');
       link.href = url;
-      link.setAttribute('download', `${vazia ? "leiaute_caed" : `planilha_caed_${ano}_${serie}${turma}_${bimestre}_${recuperacao ? 'SIM' : 'NÃO'}`}.xlsx`);
+      link.setAttribute('download', `planilha_caed_${ano}_${serie}${turma}_${bimestre}_${recuperacao ? 'SIM' : 'NÃO'}.xlsx`);
       document.body.appendChild(link);
       link.click();
   })
@@ -52,7 +52,7 @@ function ConsultaCaed() {
             <Form.Group as={Row} className="mb-3">
               <Form.Label column sm="3" for= "chkRecuperacao"><b>Recuperação Continuada: </b></Form.Label>
               <Col sm="1">
-                <Form.Check name="chkRecuperacao" id="chkRecuperacao" type="checkbox" checked={recuperacao} onChange={(e) => setRecuperacao(e.target.checked)}/>
+                <Form.Switch name="chkRecuperacao" id="chkRecuperacao" type="checkbox" checked={recuperacao} onChange={(e) => setRecuperacao(e.target.checked)}/>
               </Col>            
             </Form.Group>        
             <Form.Group as={Row} className="mb-3">
@@ -114,8 +114,7 @@ function ConsultaCaed() {
             </Form.Group>        
             <div>
               <Button onClick={() => loadDataCaed()} style={{marginRight: '30px'}}>BUSCAR</Button>
-              <Button onClick={()=> downloadDataCaed()}style={{marginRight: '30px'}}>DOWNLOAD</Button>
-              <Button onClick={()=> downloadDataCaed(true)}>LEIAUTE</Button>
+              <Button onClick={()=> downloadDataCaed()}style={{marginRight: '30px'}}>DOWNLOAD</Button>             
             </div>
           </Form>
         </Card.Body>  

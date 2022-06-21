@@ -58,6 +58,30 @@ function ConsultaUpload() {
     return response; 
   }
 
+  function downloadLeiaute() {
+    api.post(
+      'downloadfile/?ano=0&materia=&turma=&serie=0&bimestre=0&recuperacao=SIM&vazia=1', 
+      null,
+      {
+          headers:
+          {
+              'Content-Disposition': 'attachment; filename=leiaute_caed.xlsx',
+              'Content-Type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+          },
+          responseType: 'arraybuffer',
+      }
+  ).then((response) => {
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', 'leiaute_caed.xlsx');
+      document.body.appendChild(link);
+      link.click();
+  })
+      .catch((error) => console.log(error));
+
+  }
+
   return ( 
     <div style={{margin: '30px'}}> 
         <Card border="info">  
@@ -71,9 +95,10 @@ function ConsultaUpload() {
                   </Col>
                 </Form.Group>              
                 <div>             
-                  <Button variant="primary" onClick={() => fileUpload()} disabled={loading}>
-                    {loading ? 'CARREGANDO...' : 'UPLOAD'}
+                  <Button variant="primary" onClick={() => fileUpload()} disabled={loading} style={{marginRight: '30px'}}>
+                    {loading ? 'CARREGANDO...' : 'UPLOAD'} 
                   </Button>
+                  <Button onClick={()=> downloadLeiaute()}>LEIAUTE</Button>
                 </div>
               </Form>
             </Card.Body>            
