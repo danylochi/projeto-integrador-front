@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './style.css';
 import api from '../../services/api';
-import { Form, Row, Col, Card, Button } from 'react-bootstrap';
+import { Form, Row, Col, Card, Button, FormText } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 
 
@@ -85,20 +85,35 @@ function ConsultaUpload() {
   return ( 
     <div style={{margin: '30px'}}> 
         <Card border="info">  
-          <Card.Header style={{ background: '#47CFE7', color:'#ffffff', height:'2.5rem'}}><h5>Upload de Planilha</h5></Card.Header>   
+          <Card.Header style={{ background: '#47CFE7', color:'#ffffff', height:'2.5rem'}}><h5>1º Passo: Download de Leiaute </h5></Card.Header>   
+            <Card.Body>
+                <Card.Text>Para realizar o upload, é necessário fazer primeiro o download do modelo de planilha de uso obrigatório.</Card.Text>      
+                <div>             
+                  
+                  <Button onClick={()=> downloadLeiaute()}>LEIAUTE</Button>
+                </div>
+            </Card.Body>            
+        </Card>    
+
+        <Card border="info" style={{marginTop: '30px'}}>  
+          <Card.Header style={{ background: '#47CFE7', color:'#ffffff', height:'2.5rem'}}><h5>2º Passo: Upload de Planilha</h5></Card.Header>   
           <Card.Body>
             <Form>
               <Form.Group as={Row} className="mb-3">
                   <Form.Label for= "iptTurma" column sm="2"><b>Selecione: </b></Form.Label>
+                  
                   <Col sm="7">
                     <Form.Control type="file" onChange={(event) => setFile(event.target.files[0])} disabled={loading}/>
+                    <FormText>Realizar o upload do arquivo conforme o modelo, em formato .xlsx</FormText>
                   </Col>
+
+                  
                 </Form.Group>              
                 <div>             
                   <Button variant="primary" onClick={() => fileUpload()} disabled={loading} style={{marginRight: '30px'}}>
                     {loading ? 'CARREGANDO...' : 'UPLOAD'} 
                   </Button>
-                  <Button onClick={()=> downloadLeiaute()}>LEIAUTE</Button>
+                  
                 </div>
               </Form>
             </Card.Body>            

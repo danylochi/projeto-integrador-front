@@ -9,7 +9,9 @@ import { Container } from "react-bootstrap";
 import ResultadoCaed from "./pages/ResultadoCaed";
 import { ToastContainer, toast } from 'react-toastify';
 
+
 import 'react-toastify/dist/ReactToastify.css';
+import Ajuda from "./pages/Ajuda";
 
 function App() {
   return (
@@ -21,6 +23,7 @@ function App() {
           <Route path="/consultaupload" component={ConsultaUpload} />
           <Route path="/consultahabilidade" component={ConsultaHabilidade} />
           <Route path="/resultadocaed" component={ResultadoCaed} />
+          <Route path="/ajuda" component={Ajuda} />
           
           <Route path="/" exact component={Home} />
         </Container>

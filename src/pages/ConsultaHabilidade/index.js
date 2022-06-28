@@ -74,13 +74,13 @@ function ConsultaHabilidade() {
               <Form.Group as={Row} className="mb-3">
                 <Form.Label for= "iptAno" column sm="2"><b>Ano: </b></Form.Label>
                 <Col sm="7">
-                  <Form.Control name="iptAno" id="iptAno" type="number" value={ano} onChange={(e) => setAno(e.target.value)}/>
+                  <Form.Control placeholder='Ano de aplicação da prova' name="iptAno" id="iptAno" type="number" value={ano} onChange={(e) => setAno(e.target.value)}/>
                 </Col>
               </Form.Group>
               <Form.Group as={Row} className="mb-3">
                 <Form.Label for= "iptTurma" column sm="2"><b>Turma: </b></Form.Label>
                 <Col sm="7">
-                  <Form.Control name="iptTurma" id="iptTurma" type="text" value={turma} onChange={(e) => setTurma(e.target.value)}/>
+                  <Form.Control placeholder='Informe a letra referente a turma' name="iptTurma" id="iptTurma" type="text" value={turma} onChange={(e) => setTurma(e.target.value)}/>
                 </Col>
               </Form.Group>
               <Form.Group as={Row} className="mb-3">

@@ -35,7 +35,12 @@ function Menu() {
                 <Nav.Link>
                   <strong>RESULTADO CAED</strong>
                 </Nav.Link>
-              </LinkContainer>                          
+              </LinkContainer> 
+              <LinkContainer to="/ajuda">
+                <Nav.Link>
+                  <strong>AJUDA</strong>
+                </Nav.Link>
+              </LinkContainer>                         
             </Nav>
           </Navbar.Collapse>
         </Container>
