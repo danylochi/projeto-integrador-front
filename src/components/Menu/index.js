@@ -6,7 +6,7 @@ import './style.css';
 function Menu() {
   return (
     <>
-      <Navbar expand="lg" collapseOnSelect style={{ background: '#47CFE7'}}>
+      <Navbar expand="lg" collapseOnSelect style={{ background: '#267987'}}>
         <Container>
           <LinkContainer to="/">
             <Navbar.Brand>

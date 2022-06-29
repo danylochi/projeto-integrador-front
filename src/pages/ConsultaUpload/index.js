@@ -85,7 +85,7 @@ function ConsultaUpload() {
   return ( 
     <div style={{margin: '30px'}}> 
         <Card border="info">  
-          <Card.Header style={{ background: '#47CFE7', color:'#ffffff', height:'2.5rem'}}><h5>1º Passo: Download de Leiaute </h5></Card.Header>   
+          <Card.Header style={{ background: '#267987', color:'#ffffff', height:'2.5rem'}}><h5>1º Passo: Download de Leiaute </h5></Card.Header>   
             <Card.Body>
                 <Card.Text>Para realizar o upload, é necessário fazer primeiro o download do modelo de planilha de uso obrigatório.</Card.Text>      
                 <div>             
@@ -96,7 +96,7 @@ function ConsultaUpload() {
         </Card>    
 
         <Card border="info" style={{marginTop: '30px'}}>  
-          <Card.Header style={{ background: '#47CFE7', color:'#ffffff', height:'2.5rem'}}><h5>2º Passo: Upload de Planilha</h5></Card.Header>   
+          <Card.Header style={{ background: '#267987', color:'#ffffff', height:'2.5rem'}}><h5>2º Passo: Upload de Planilha</h5></Card.Header>   
           <Card.Body>
             <Form>
               <Form.Group as={Row} className="mb-3">

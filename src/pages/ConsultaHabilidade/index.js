@@ -68,7 +68,7 @@ function ConsultaHabilidade() {
     return (
       <div style={{margin: '30px'  }}>
         <Card border="info">  
-          <Card.Header style={{ background: '#47CFE7', color:'#ffffff', height:'2.5rem'}}><h5>Cadastro de Habilidade</h5></Card.Header>
+          <Card.Header style={{ background: '#267987', color:'#ffffff', height:'2.5rem'}}><h5>Cadastro de Habilidade</h5></Card.Header>
           <Card.Body>
             <Form>      
               <Form.Group as={Row} className="mb-3">
