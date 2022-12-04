@@ -36,6 +36,16 @@ function Menu() {
                   <strong>RESULTADO CAED</strong>
                 </Nav.Link>
               </LinkContainer> 
+              <LinkContainer to="/consultaquestionario">
+                <Nav.Link>
+                  <strong>QUESTIONÁRIO</strong>
+                </Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="/resultadoquestionario">
+                <Nav.Link>
+                  <strong>RESULTADO QUESTIONÁRIO</strong>
+                </Nav.Link>
+              </LinkContainer>
               <LinkContainer to="/ajuda">
                 <Nav.Link>
                   <strong>AJUDA</strong>

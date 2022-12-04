@@ -12,6 +12,8 @@ import { ToastContainer, toast } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css';
 import Ajuda from "./pages/Ajuda";
+import ConsultaQuestionario from "./pages/ConsultaQuestionario";
+import ResultadoQuestionario from "./pages/ResultadoQuestionario";
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
           <Route path="/consultaupload" component={ConsultaUpload} />
           <Route path="/consultahabilidade" component={ConsultaHabilidade} />
           <Route path="/resultadocaed" component={ResultadoCaed} />
+          <Route path="/consultaquestionario" component={ConsultaQuestionario} />
+          <Route path="/resultadoquestionario" component={ResultadoQuestionario} />
           <Route path="/ajuda" component={Ajuda} />
           
           <Route path="/" exact component={Home} />
